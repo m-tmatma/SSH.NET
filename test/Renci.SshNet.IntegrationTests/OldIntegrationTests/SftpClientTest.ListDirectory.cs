@@ -54,7 +54,7 @@ namespace Renci.SshNet.IntegrationTests.OldIntegrationTests
             }
         }
 
-#if NET6_0_OR_GREATER
+#if NET
         [TestMethod]
         [TestCategory("Sftp")]
         public async Task Test_Sftp_ListDirectoryAsync_Current()

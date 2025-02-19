@@ -37,7 +37,7 @@ namespace Renci.SshNet
         private const string DirectoryInfoPattern = @"D(?<mode>\d{4}) (?<length>\d+) (?<filename>.+)";
         private const string TimestampPattern = @"T(?<mtime>\d+) 0 (?<atime>\d+) 0";
 
-#if NET7_0_OR_GREATER
+#if NET
         private static readonly Regex FileInfoRegex = GetFileInfoRegex();
         private static readonly Regex DirectoryInfoRegex = GetDirectoryInfoRegex();
         private static readonly Regex TimestampRegex = GetTimestampRegex();
@@ -670,7 +670,7 @@ namespace Renci.SshNet
         /// <param name="fileOrDirectory">The file or directory to upload.</param>
         private void UploadTimes(IChannelSession channel, Stream input, FileSystemInfo fileOrDirectory)
         {
-#if NET ||NETSTANDARD2_1_OR_GREATER
+#if NET || NETSTANDARD2_1
             var zeroTime = DateTime.UnixEpoch;
 #else
             var zeroTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
@@ -851,7 +851,7 @@ namespace Renci.SshNet
                     var mtime = long.Parse(match.Result("${mtime}"), CultureInfo.InvariantCulture);
                     var atime = long.Parse(match.Result("${atime}"), CultureInfo.InvariantCulture);
 
-#if NET || NETSTANDARD2_1_OR_GREATER
+#if NET || NETSTANDARD2_1
                     var zeroTime = DateTime.UnixEpoch;
 #else
                     var zeroTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);

@@ -1,6 +1,6 @@
 ﻿#pragma warning disable
-#if !NET8_0_OR_GREATER
-// Copied verbatim from https://github.com/dotnet/runtime/blob/78bd7debe6d8b454294c673c9cb969c6b8a14692/src/libraries/Common/src/System/Threading/Tasks/TaskToAsyncResult.cs
+#if !NET
+// Copied verbatim from https://github.com/dotnet/runtime/blob/261611930d6b436d7c4395450356b624d903d9bf/src/libraries/Common/src/System/Threading/Tasks/TaskToAsyncResult.cs
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -35,7 +35,7 @@ namespace System.Threading.Tasks
         /// </remarks>
         public static IAsyncResult Begin(Task task, AsyncCallback? callback, object? state)
         {
-#if NET6_0_OR_GREATER
+#if NET
             ArgumentNullException.ThrowIfNull(task);
 #else
             if (task is null)
@@ -72,7 +72,7 @@ namespace System.Threading.Tasks
         /// <exception cref="ArgumentException"><paramref name="asyncResult"/> was not produced by a call to <see cref="Begin"/>.</exception>
         public static Task Unwrap(IAsyncResult asyncResult)
         {
-#if NET6_0_OR_GREATER
+#if NET
             ArgumentNullException.ThrowIfNull(asyncResult);
 #else
             if (asyncResult is null)
@@ -101,7 +101,7 @@ namespace System.Threading.Tasks
         /// </exception>
         public static Task<TResult> Unwrap<TResult>(IAsyncResult asyncResult)
         {
-#if NET6_0_OR_GREATER
+#if NET
             ArgumentNullException.ThrowIfNull(asyncResult);
 #else
             if (asyncResult is null)
